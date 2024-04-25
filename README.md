@@ -56,13 +56,13 @@ Read more: [Architecture in detail](#architecture-in-detail)
 ### Prerequisites
 
 - [Azure Developer CLI](https://docs.microsoft.com/en-us/azure/developer/azure-developer-cli/)
-- An SAP Environment. See below on how to setup your own SAP OData API. 
+- An SAP Environment. See below on how to setup your own SAP OData API.
 
 ### SAP OData API
 
 You can setup SAP OData API in minutes. You need to signup and then you can tryout the API [here](https://api.sap.com/api/API_BUSINESS_PARTNER/tryout). You'll find the API documentation [here](https://api.sap.com/api/API_BUSINESS_PARTNER/overview).
 
-If you used the SAP Sandbox environment as mentioned above, the SAP_ENDPOINT is https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER. The SAP_APIKEY can be found in the SAP API Business Hub.
+If you used the SAP Sandbox environment as mentioned above, the SAP_ENDPOINT is [here](https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER). The SAP_APIKEY can be found in the SAP API Business Hub.
 
 OData API type just got into public preview. You can find more information about how you can add your own SAP OData APIs in Azure API Management [here](https://learn.microsoft.com/en-us/azure/api-management/sap-api?tabs=odata).
 
@@ -164,7 +164,7 @@ A [tests.http](tests.http) file with relevant tests you can perform is included,
 azd env get-values
 ```
 
-### Build Status 
+### Build Status
 
 After forking this repo, you can use this GitHub Action to enable CI/CD for your fork. Just adjust the README in your fork to point to your own GitHub repo.
 
