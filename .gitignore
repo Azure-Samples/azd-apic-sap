@@ -396,3 +396,17 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+#### Added for this Repo ####
+
+# azd templates support.
+.azure
+
+# MacOs
+.DS_Store
+
+# draw.io Backups
+*.drawio.bkp
+
+# Local test files
+local.*

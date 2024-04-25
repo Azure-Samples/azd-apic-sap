@@ -1,0 +1,23 @@
+@apimSubscriptionKey = <your-subscription-key>
+@apimName = <api-management-instance-name>
+@apimApiPath = <api-path>
+@odataEntity = <odata-entity>
+@odataQuery = <odata-query>
+@sapUri = <sap-uri>
+@sapApiKey = <sap-api-key>
+
+### Test SAP endpoint ODATA metadata
+GET {{sapUri}}/$metadata
+APIKey: {{sapApiKey}}
+
+### Test SAP endpoint ODATA table with Query
+GET {{sapUri}}/{{odataEntity}}?{{odataQuery}}
+APIKey: {{sapApiKey}}
+
+### Test APIM endpoint ODATA metadata (only works if Testing Product Group is attached to the API)
+GET https://{{apimName}}.azure-api.net/{{apimApiPath}}/$metadata
+Ocp-Apim-Subscription-Key: {{apimSubscriptionKey}}
+
+### Test APIM endpoint ODATA table with Query (only works if Testing Product Group is attached to the API)
+GET https://{{apimName}}.azure-api.net/{{apimApiPath}}/{{odataEntity}}?{{odataQuery}}
+Ocp-Apim-Subscription-Key: {{apimSubscriptionKey}}

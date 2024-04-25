@@ -1,0 +1,8 @@
+{
+  "title": "Application",
+  "description": "The Application of the API",
+  "type": "string",
+  "minLength": 1,
+  "maxLength": 50,
+  "examples": ["SAP", "Dynamics 365", "SalesForce"]
+}

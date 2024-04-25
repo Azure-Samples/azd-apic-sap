@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+# This is an example starter azure.yaml file containing several example services in comments below.
+# Make changes as needed to describe your application setup.
+# To learn more about the azure.yaml file, visit https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/azd-schema
+
+# Name of the application.
+name: azd-apic-sap
+requiredVersions:
+  azd: ">= 1.4.0"
+hooks:
+  preprovision:
+    shell: pwsh
+    run: ./scripts/set-env.ps1
+    continueOnError: false
+    interactive: true
+  postprovision:
+    shell: pwsh
+    run: ./scripts/deploy-apis.ps1
+    interactive: true
+    continueOnError: false
+      

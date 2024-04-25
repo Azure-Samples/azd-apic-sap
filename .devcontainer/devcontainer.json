@@ -1,0 +1,35 @@
+{
+    "name": "Azure Developer CLI",
+    "image": "mcr.microsoft.com/devcontainers/python:3.10-bullseye",
+    "features": {
+        // See https://containers.dev/features for list of features
+        "ghcr.io/devcontainers/features/azure-cli:latest": {
+            "installBicep": true
+        },
+        "ghcr.io/azure/azure-dev/azd:latest": {},
+        "ghcr.io/devcontainers/features/powershell:1": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "GitHub.vscode-github-actions",
+                "ms-azuretools.azure-dev",
+                "ms-vscode.azurecli",
+                "ms-azuretools.vscode-azurefunctions",
+                "ms-azuretools.vscode-bicep",
+                "apidev.azure-api-center",
+                "ms-azuretools.vscode-apimanagement",
+                "humao.rest-client",
+                "GitHub.copilot-chat@prerelease",
+                "GitHub.copilot@prerelease"
+            ]
+        }
+    },
+    "forwardPorts": [
+        // Forward ports if needed for local development
+    ],
+    "remoteUser": "root",
+    "hostRequirements": {
+        "memory": "8gb"
+    }
+}

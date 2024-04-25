@@ -1,0 +1,18 @@
+<policies>
+    <inbound>
+        <base/>
+        <set-backend-service backend-id="sap-backend" />
+        <set-header name="APIKey" exists-action="override">
+            <value>{{sap-apikey}}</value>
+        </set-header>
+    </inbound>
+    <backend>
+        <base/>
+    </backend>
+    <outbound>
+        <base/>
+    </outbound>
+    <on-error>
+        <base/>
+    </on-error>
+</policies>

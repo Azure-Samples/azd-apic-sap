@@ -1,0 +1,26 @@
+@sapApimTokenUrl = <url-to-get-token-from-sap-apim>
+@sapApimDiscoveryUrl = <url-to-discovery-endpoint>
+@sapApimResourceUrl = <url-to-resource-endpoint>
+@clientId = <client-id>
+@clientSecret = <client-secret>
+
+### Get Token for consumer
+# @name consumerToken
+
+POST {{sapApimTokenUrl}} HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+client_id={{clientId}}
+&client_secret={{clientSecret}}
+&grant_type=client_credentials
+
+#### Get Token Response
+@accessToken = {{consumerToken.response.body.$.access_token}}
+
+### Test Discovery endpoint
+GET {{sapApimDiscoveryUrl}} HTTP/1.1
+Authorization: Bearer {{accessToken}}
+
+### Test SAP API Management endpoint
+GET {{sapApimResourceUrl}} HTTP/1.1
+Authorization: Bearer {{accessToken}}
