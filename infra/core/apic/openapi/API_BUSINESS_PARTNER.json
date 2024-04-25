@@ -1,0 +1,41 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "SAP Business Partner API",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://apim-wvcnsuixn4fo4.azure-api.net/api/sapbp"
+        },
+        {
+            "url": "https://apim-wvcnsuixn4fo4.azure-api.net/api/sapbp"
+        }
+    ],
+    "paths": {},
+    "components": {
+        "securitySchemes": {
+            "apiKeyHeader": {
+                "type": "apiKey",
+                "name": "Ocp-Apim-Subscription-Key",
+                "in": "header"
+            },
+            "apiKeyQuery": {
+                "type": "apiKey",
+                "name": "subscription-key",
+                "in": "query"
+            }
+        }
+    },
+    "security": [
+        {
+            "apiKeyHeader": []
+        },
+        {
+            "apiKeyQuery": []
+        }
+    ],
+    "x-ms-export-notes": [
+        "The exported API contains schemas that aren't of content type 'application/vnd.oai.openapi.components+json', and are hence not exported as OpenAPI components."
+    ]
+}

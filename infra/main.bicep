@@ -114,7 +114,7 @@ var sapAppMetadataSchema = loadTextContent('./core/apic/metadata/sap-app-metadat
 var rootUrl = !empty(sapApimDiscoveryUrl) ? split(sapApimDiscoveryUrl, '/apidiscovery')[0] : ''
 var sapManagementPortalUrl = !empty(rootUrl) ? '${rootUrl}/shell/homepage' : ''
 var sapDeveloperPortalUrl = !empty(rootUrl) ? '${rootUrl}/shell/configure' : ''
-
+var apimOpenAPISpecFileLocation = 'infra/core/apic/openapi/API_BUSINESS_PARTNER.json'
 // Organize resources in a resource group
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: !empty(resourceGroupName) ? resourceGroupName : '${abbrs.resourcesResourceGroups}${environmentName}'
@@ -190,7 +190,7 @@ module sapApiService './core/gateway/apim-api.bicep' = if(deployAzureAPIMtoAPIC)
     name: 'api-business-partner'
     displayName: 'SAP Business Partner API'
     path: 'api/sapbp'
-    SpecUrl: 'https://raw.githubusercontent.com/pascalvanderheiden/azd-apic-sap/main/infra/core/gateway/odata/API_BUSINESS_PARTNER.edmx'
+    SpecUrl: 'https://raw.githubusercontent.com/azure-samples/azd-apic-sap/main/infra/core/gateway/odata/API_BUSINESS_PARTNER.edmx'
     apimServiceName: apim.outputs.apimServiceName
     apimLoggerName: apim.outputs.apimLoggerName
     keyVaultEndpoint: keyVault.outputs.keyVaultEndpoint
@@ -287,6 +287,8 @@ module apimApicEnvironment './core/apic/apic-environment.bicep' = if(deployAzure
   }
 }
 
+// Prepared for future use
+/*
 module sapApicMetadata './core/apic/apic-metadata.bicep' = {
   name: 'sap-apic-metadata'
   scope: rg
@@ -308,9 +310,7 @@ module sapApicMetadata './core/apic/apic-metadata.bicep' = {
     apicServiceName: apic.outputs.apicServiceName
   }
 }
-
-// Prepared for future use
-/* 
+ 
 module sapApicServiceApi './core/apic/apic-api.bicep' = if(deploySapAPIMtoAPIC){
   name: 'sap-apic-api'
   scope: rg
@@ -342,6 +342,7 @@ module sapApicServiceApi './core/apic/apic-api.bicep' = if(deploySapAPIMtoAPIC){
     apicServiceName: apic.outputs.apicServiceName
   }
 }
+*/
 
 module apimApicServiceApi './core/apic/apic-api.bicep' = if(deployAzureAPIMtoAPIC){
   name: 'apim-apic-api'
@@ -359,13 +360,13 @@ module apimApicServiceApi './core/apic/apic-api.bicep' = if(deployAzureAPIMtoAPI
     docsUrl: 'https://docs.microsoft.com/en-us/azure/api-management/'
     licenseName: 'APIM License'
     licenseUrl: 'https://azure.microsoft.com/en-us/pricing/details/api-management/'
-    versionName: '1-0'
-    versionTitle: '1.0'
+    versionName: 'v1'
+    versionTitle: 'v1'
     versionLifecycle: 'Design'
-    definitionName: apimDefinitionName
-    definitionTitle: apimDefinitionTitle
-    definitionDescription: apimDefinitionDescription
-    runtimeUri: apim.outputs.apimGatewayUrl
+    definitionName: 'openapi'
+    definitionTitle: 'openapi'
+    definitionDescription: 'OpenAPI definition of the SAP Business Partner API'
+    runtimeUri: sapApiService.outputs.serviceApiUrl
     deploymentName: 'v1-deployment'
     deploymentTitle: 'v1 Deployment'
     deploymentDescription: 'Initial deployment of the APIM API'
@@ -374,7 +375,6 @@ module apimApicServiceApi './core/apic/apic-api.bicep' = if(deployAzureAPIMtoAPI
     apicEnvironmentName: apimApicEnvironment.outputs.apicEnvironmentName
   }
 }
-*/
 
 // Add outputs from the deployment here
 output AZURE_LOCATION string = location
@@ -394,3 +394,8 @@ output SAP_CLIENTID_KV_SECRET_NAME string = deploySapAPIMtoAPIC ? sapClientIdSec
 output SAP_SECRET_KV_SECRET_NAME string = deploySapAPIMtoAPIC ? sapSecretSecretName : ''
 output DEPLOY_SAP_APIM_TO_APIC bool = deploySapAPIMtoAPIC
 output DEPLOY_AZURE_APIM_TO_APIC bool = deployAzureAPIMtoAPIC
+
+output APIM_SAP_OPENAPI_SPEC_FILE string = deployAzureAPIMtoAPIC ? apimOpenAPISpecFileLocation : ''
+output APIM_SAP_API_NAME string = deployAzureAPIMtoAPIC ? apimApicServiceApi.outputs.apicApiName : ''
+output APIM_SAP_VERSION_NAME string = deployAzureAPIMtoAPIC ? apimApicServiceApi.outputs.apicApiVersionName : ''
+output APIM_SAP_DEFINITION_NAME string = deployAzureAPIMtoAPIC ? apimApicServiceApi.outputs.apicApiDefinitionName : ''

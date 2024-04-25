@@ -112,4 +112,4 @@ resource diagnosticsPolicy 'Microsoft.ApiManagement/service/apis/diagnostics@202
   }
 }
 */
-output SERVICE_API_URI string = '${apimService.properties.gatewayUrl}/${apimSapApi.properties.path}'
+output serviceApiUrl string = '${apimService.properties.gatewayUrl}/${apimSapApi.properties.path}'

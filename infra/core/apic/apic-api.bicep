@@ -68,7 +68,7 @@ resource apicApi 'Microsoft.ApiCenter/services/workspaces/apis@2024-03-01' = {
 }
 
 resource apicApiVersion 'Microsoft.ApiCenter/services/workspaces/apis/versions@2024-03-01' = {
-  name: '${apicApi.name}-${versionName}'
+  name: versionName
   parent: apicApi
   properties: {
     lifecycleStage: versionLifecycle
@@ -77,7 +77,7 @@ resource apicApiVersion 'Microsoft.ApiCenter/services/workspaces/apis/versions@2
 }
 
 resource apicApiDefinition 'Microsoft.ApiCenter/services/workspaces/apis/versions/definitions@2024-03-01' = {
-  name: '${apicApi.name}-${versionName}-${definitionName}'
+  name: definitionName
   parent: apicApiVersion
   properties: {
     description: definitionDescription
@@ -87,7 +87,7 @@ resource apicApiDefinition 'Microsoft.ApiCenter/services/workspaces/apis/version
 }
 
 resource apicApiDeployment 'Microsoft.ApiCenter/services/workspaces/apis/deployments@2024-03-01' = {
-  name: '${apicApi.name}-${deploymentName}'
+  name: deploymentName
   parent: apicApi
   properties: {
     definitionId: '/workspaces/${apicWorkspace.name}/apis/${apicApi.name}/versions/${apicApiVersion.name}/definitions/${apicApiDefinition.name}'
