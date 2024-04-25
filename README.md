@@ -158,7 +158,7 @@ The resource group and all the resources will be deleted and you'll not be promp
 
 ### Testing
 
-A [tests.http](tests.http) file with relevant tests you can perform is included, to check if your Azure API Management deployment is successful with the SAP Backend. I've added my test script for testing the SAP API Management Discovery as well in this file: [sap-apim-scan.http](sap-apim-scan.http). You can easily complete the parameters in the tests file, just check the environment variables in the `.env` file, or run the command below in the terminal. Keep in mind that secrets are not stored in the `.env` file, so you need to provide them manually.
+A [tests-sap-backend.http](tests-sap-backend.http) file with relevant tests you can perform is included, to check if your Azure API Management deployment is successful with the SAP Backend. I've added my test script for testing the SAP API Management Discovery as well in this file: [sap-apim-scan.http](sap-apim-scan.http). You can easily complete the parameters in the tests file, just check the environment variables in the `.env` file, or run the command below in the terminal. Keep in mind that secrets are not stored in the `.env` file, so you need to provide them manually.
 
 ```shell
 azd env get-values
