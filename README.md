@@ -7,7 +7,7 @@ languages:
 products:
 - azure-api-management
 - azure-api-center
-- azure-cache-redis
+- azure-key-vault
 - azure-log-analytics
 - azure-monitor
 urlFragment: azd-apic-sap
