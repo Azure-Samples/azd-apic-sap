@@ -168,10 +168,6 @@ azd env get-values
 
 After forking this repo, you can use this GitHub Action to enable CI/CD for your fork. Just adjust the README in your fork to point to your own GitHub repo.
 
-| GitHub Action | Status |
-| ----------- | ----------- |
-| `azd` Deploy | [![Deploy](https://github.com/azure-samples/azd-apic-sap/actions/workflows/azure-dev.yml/badge.svg?branch=main)](https://github.com/azure-samples/azd-apic-sap/actions/workflows/azure-dev.yml) |
-
 ## Additional Details
 
 The following section examines different concepts that help tie in application and infrastructure.
