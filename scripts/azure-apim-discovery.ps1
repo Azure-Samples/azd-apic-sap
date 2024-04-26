@@ -12,7 +12,7 @@ else
 {
     Write-Host "API Management found, checking if APIs need to be imported..."
     $api = az apic api list -g $azdenv.RESOURCE_GROUP_NAME -s $azdenv.APIC_SERVICE_NAME --output json | ConvertFrom-Json
-    $matchingApi = $api | Where-Object { $_.name -eq $azdenv.APIM_SAP_API_NAME) }
+    $matchingApi = $api | Where-Object { $_.name -eq $azdenv.APIM_SAP_API_NAME }
     if (!$matchingApi) {
         Write-Host "API not found, importing..."
         # AZ CLI METHOD to import all APIs from APIM
