@@ -4,11 +4,6 @@ param location string = resourceGroup().location
 param tags object = {}
 
 param principalId string
-param apimManagedIdentityName string
-
-resource apimManagedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2018-11-30' existing = if (!empty(apimManagedIdentityName)) {
-  name: apimManagedIdentityName
-}
 
 resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' = {
   name: name
@@ -19,16 +14,6 @@ resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' = {
     sku: { family: 'A', name: 'standard' }
     enableRbacAuthorization: true
     enableSoftDelete: false
-  }
-}
-
-module apimManagedIdentityRoleAssignment '../roleassignments/roleassignment.bicep' = if (!empty(apimManagedIdentityName)) {
-  name: 'kv-apim-roleAssignment'
-  params: {
-    principalId: apimManagedIdentity.properties.principalId
-    roleName: 'Key Vault Secrets User'
-    targetResourceId: keyVault.id
-    deploymentName: 'kv-apim-roleAssignment-SecretsUser'
   }
 }
 
