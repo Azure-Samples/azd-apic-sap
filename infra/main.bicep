@@ -180,7 +180,6 @@ module apim './core/gateway/apim.bicep' = if(deployAzureAPIMtoAPIC) {
     applicationInsightsName: monitoring.outputs.applicationInsightsName
     managedIdentityName: managedIdentityApim.outputs.managedIdentityName
     apicManagedIdentityName: managedIdentityApic.outputs.managedIdentityName
-    keyVaultName: keyVault.outputs.keyVaultName
   }
 }
 
@@ -209,6 +208,8 @@ module keyVault './core/security/keyvault.bicep' = {
     location: location
     tags: tags
     principalId: myPrincipalId
+    apimManagedIdentityName: deployAzureAPIMtoAPIC ? managedIdentityApim.outputs.managedIdentityName : ''
+    deployAzureAPIMtoAPIC: deployAzureAPIMtoAPIC 
   }
 }
 

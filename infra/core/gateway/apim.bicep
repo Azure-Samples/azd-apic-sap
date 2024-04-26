@@ -22,7 +22,6 @@ param applicationInsightsName string
 
 param managedIdentityName string
 param apicManagedIdentityName string
-param keyVaultName string
 
 resource applicationInsights 'Microsoft.Insights/components@2020-02-02' existing = if (!empty(applicationInsightsName)) {
   name: applicationInsightsName
@@ -39,10 +38,6 @@ resource managedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2018-
 
 resource apicManagedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2018-11-30' existing = {
   name: apicManagedIdentityName
-}
-
-resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' = {
-  name: keyVaultName
 }
 
 resource apimService 'Microsoft.ApiManagement/service@2023-05-01-preview' = {
@@ -102,16 +97,6 @@ module apicManagedIdentityRoleAssignment '../roleassignments/roleassignment.bice
     roleName: 'API Management Service Reader'
     targetResourceId: apimService.id
     deploymentName: 'apim-apic-roleAssignment-ServiceReader'
-  }
-}
-
-module apimManagedIdentityRoleAssignment '../roleassignments/roleassignment.bicep' = {
-  name: 'kv-apim-roleAssignment'
-  params: {
-    principalId: managedIdentity.properties.principalId
-    roleName: 'Key Vault Secrets User'
-    targetResourceId: keyVault.id
-    deploymentName: 'kv-apim-roleAssignment-SecretsUser'
   }
 }
 
