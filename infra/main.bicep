@@ -208,7 +208,8 @@ module keyVault './core/security/keyvault.bicep' = {
     location: location
     tags: tags
     principalId: myPrincipalId
-    apimManagedIdentityName: deployAzureAPIMtoAPIC ? managedIdentityApim.outputs.managedIdentityName : '' 
+    apimManagedIdentityName: deployAzureAPIMtoAPIC ? managedIdentityApim.outputs.managedIdentityName : ''
+    deployAzureAPIMtoAPIC: deployAzureAPIMtoAPIC 
   }
 }
 

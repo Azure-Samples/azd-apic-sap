@@ -56,7 +56,7 @@ $discoveryResponse.value | ForEach-Object {
     # Import API into APIC
     Write-Host "Checking if API already exists in APIC..."
     $api = az apic api list -g $azdenv.RESOURCE_GROUP_NAME -s $azdenv.APIC_SERVICE_NAME --output json | ConvertFrom-Json
-    $matchingApi = $api | Where-Object { $_.title -eq $apiName }
+    $matchingApi = $api | Where-Object { $_.name -eq $apiName }
     if (!$matchingApi) {
         Write-Host "API not found, importing..."
         # AZ CLI METHOD

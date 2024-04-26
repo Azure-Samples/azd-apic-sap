@@ -5,8 +5,9 @@ param tags object = {}
 
 param principalId string
 param apimManagedIdentityName string
+param deployAzureAPIMtoAPIC bool
 
-resource apimManagedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2018-11-30' existing = if (!empty(apimManagedIdentityName)) {
+resource apimManagedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2018-11-30' existing = if (deployAzureAPIMtoAPIC) {
   name: apimManagedIdentityName
 }
 
@@ -22,7 +23,7 @@ resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' = {
   }
 }
 
-module apimManagedIdentityRoleAssignment '../roleassignments/roleassignment.bicep' = if (!empty(apimManagedIdentityName)) {
+module apimManagedIdentityRoleAssignment '../roleassignments/roleassignment.bicep' = if (deployAzureAPIMtoAPIC) {
   name: 'kv-apim-roleAssignment'
   params: {
     principalId: apimManagedIdentity.properties.principalId
