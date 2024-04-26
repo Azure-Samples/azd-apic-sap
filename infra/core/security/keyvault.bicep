@@ -26,7 +26,7 @@ resource keyVault 'Microsoft.KeyVault/vaults@2022-07-01' = {
 module apimManagedIdentityRoleAssignment '../roleassignments/roleassignment.bicep' = if (deployAzureAPIMtoAPIC) {
   name: 'kv-apim-roleAssignment'
   params: {
-    principalId: apimManagedIdentity.properties.principalId
+    principalId: deployAzureAPIMtoAPIC ? apimManagedIdentity.properties.principalId : ''
     roleName: 'Key Vault Secrets User'
     targetResourceId: keyVault.id
     deploymentName: 'kv-apim-roleAssignment-SecretsUser'
