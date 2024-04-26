@@ -61,12 +61,12 @@ Read more: [Architecture in detail](#architecture-in-detail)
 - [Azure Developer CLI](https://docs.microsoft.com/en-us/azure/developer/azure-developer-cli/)
 - An SAP Integration Suite instance with the [SAP API management capability](https://developers.sap.com/group.cp-apim-code-1.html) activated in your SAP BTP subaccount.
 - The [API Management, developer portal](https://help.sap.com/docs/integration-suite/sap-integration-suite/api-access-plan-for-api-business-hub-enterprise) service deployed in your SAP BTP subaccount.
-- At least one OData API hosted on an SAP system available.
+- At least one OpenAPI or OData API hosted on an SAP system available.
 
 > [!TIP]
 > Consider the SAP BTP terraform provider to automate the provisioning of SAP BTP services for a fully integrated experience. Find more information [here](https://developers.sap.com/tutorials/btp-terraform-get-started.html).
 
-### Preparing your OData API
+### Preparing your SAP API
 
 Arguably the fastest way to interact with an SAP OData API is the SAP Business Accelerator hub. Once signed up you can tryout for instance Business Partner API [here](https://api.sap.com/api/API_BUSINESS_PARTNER/tryout). You'll find the API documentation [here](https://api.sap.com/api/API_BUSINESS_PARTNER/overview).
 
@@ -75,7 +75,7 @@ Arguably the fastest way to interact with an SAP OData API is the SAP Business A
 
 See [these additional options](https://github.com/Azure-Samples/app-service-javascript-sap-cloud-sdk-quickstart?tab=readme-ov-file#prerequisites--installation) for free and easy sandboxing with SAP APIs.
 
-Find more information about on adding OData APIs in Azure API Management [here](https://learn.microsoft.com/azure/api-management/sap-api?tabs=odata).
+Find more information about on adding OData APIs in Azure API Management [here](https://learn.microsoft.com/azure/api-management/sap-api?tabs=odata). For SAP API Management have a look [here](https://developers.sap.com/group.cp-apim-code-1.html).
 
 ### 1. Initialize a new `azd` environment
 
