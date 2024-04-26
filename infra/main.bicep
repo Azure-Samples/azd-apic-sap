@@ -178,7 +178,7 @@ module apim './core/gateway/apim.bicep' = if(deployAzureAPIMtoAPIC) {
     sku: apimSku
     skuCount: apimSkuCount
     applicationInsightsName: monitoring.outputs.applicationInsightsName
-    managedIdentityName: managedIdentityApim.outputs.managedIdentityName
+    managedIdentityName: deployAzureAPIMtoAPIC ? managedIdentityApim.outputs.managedIdentityName : ''
     apicManagedIdentityName: managedIdentityApic.outputs.managedIdentityName
   }
 }
@@ -191,11 +191,11 @@ module sapApiService './core/gateway/apim-api.bicep' = if(deployAzureAPIMtoAPIC)
     displayName: 'SAP Business Partner API'
     path: 'api/sapbp'
     SpecUrl: 'https://raw.githubusercontent.com/azure-samples/azd-apic-sap/main/infra/core/gateway/odata/API_BUSINESS_PARTNER.edmx'
-    apimServiceName: apim.outputs.apimServiceName
-    apimLoggerName: apim.outputs.apimLoggerName
-    keyVaultEndpoint: keyVault.outputs.keyVaultEndpoint
+    apimServiceName: deployAzureAPIMtoAPIC ? apim.outputs.apimServiceName : ''
+    apimLoggerName: deployAzureAPIMtoAPIC ? apim.outputs.apimLoggerName : ''
+    keyVaultEndpoint: deployAzureAPIMtoAPIC ? keyVault.outputs.keyVaultEndpoint :''
     sapKeyVaultSecretName: sapApiKeySecretName
-    managedIdentityName: managedIdentityApim.outputs.managedIdentityName
+    managedIdentityName: deployAzureAPIMtoAPIC ? managedIdentityApim.outputs.managedIdentityName : ''
     sapUri: sapBackendEndpoint
   }
 }
@@ -267,8 +267,8 @@ module sapApicEnvironment './core/apic/apic-environment.bicep' = if(deploySapAPI
     developerPortalUri: sapDeveloperPortalUrl
     managementPortalUri: sapManagementPortalUrl
     environmentType: 'ApiGee API Management'
-    apicWorkspaceName: apic.outputs.apicWorkspaceName
-    apicServiceName: apic.outputs.apicServiceName
+    apicWorkspaceName: deploySapAPIMtoAPIC ? apic.outputs.apicWorkspaceName : ''
+    apicServiceName: deploySapAPIMtoAPIC ? apic.outputs.apicServiceName : ''
   }
 }
 
@@ -280,11 +280,11 @@ module apimApicEnvironment './core/apic/apic-environment.bicep' = if(deployAzure
     title: 'Azure API Management'
     description: 'Azure API Management instance (${apimSku})'
     kind: 'Development'
-    developerPortalUri: apim.outputs.apimDeveloperPortalUrl
-    managementPortalUri: apim.outputs.apimManagementPortalUrl
+    developerPortalUri: deployAzureAPIMtoAPIC ? apim.outputs.apimDeveloperPortalUrl : ''
+    managementPortalUri: deployAzureAPIMtoAPIC ? apim.outputs.apimManagementPortalUrl : ''
     environmentType: 'Azure API Management'
-    apicServiceName: apic.outputs.apicServiceName
-    apicWorkspaceName: apic.outputs.apicWorkspaceName
+    apicServiceName: deployAzureAPIMtoAPIC ? apic.outputs.apicServiceName : ''
+    apicWorkspaceName: deployAzureAPIMtoAPIC ? apic.outputs.apicWorkspaceName : ''
   }
 }
 
@@ -367,13 +367,13 @@ module apimApicServiceApi './core/apic/apic-api.bicep' = if(deployAzureAPIMtoAPI
     definitionName: 'openapi'
     definitionTitle: 'openapi'
     definitionDescription: 'OpenAPI definition of the SAP Business Partner API'
-    runtimeUri: sapApiService.outputs.serviceApiUrl
+    runtimeUri: deployAzureAPIMtoAPIC ? sapApiService.outputs.serviceApiUrl : ''
     deploymentName: 'v1-deployment'
     deploymentTitle: 'v1 Deployment'
     deploymentDescription: 'Initial deployment of the APIM API'
-    apicServiceName: apic.outputs.apicServiceName
-    apicWorkspaceName: apic.outputs.apicWorkspaceName
-    apicEnvironmentName: apimApicEnvironment.outputs.apicEnvironmentName
+    apicServiceName: deployAzureAPIMtoAPIC ? apic.outputs.apicServiceName : ''
+    apicWorkspaceName: deployAzureAPIMtoAPIC ? apic.outputs.apicWorkspaceName : ''
+    apicEnvironmentName: deployAzureAPIMtoAPIC ? apimApicEnvironment.outputs.apicEnvironmentName : ''
   }
 }
 
