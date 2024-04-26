@@ -20,7 +20,7 @@ You can configure `azd` to provision and deploy resources to your deployment env
 
 The deployed resources include a Log Analytics workspace with an Application Insights based dashboard to measure metrics like server response time and failed requests. We also included some custom visuals in the dashboard to visualize the token usage per consumer of the Azure OpenAI service.
 
-![azd-apic-sap](docs/images/dashboard.png)
+![azd-apic-sap](images/dashboard.png)
 
 To open that dashboard, run this command once you've deployed:
 
@@ -50,7 +50,7 @@ The following section examines different concepts that help tie in application a
 
 This repository illustrates how to deploy a solution that integrates SAP APIs and Azure API Management APIs into Azure API Center.
 
-We've used the Azure Developer CLI Bicep Starter template to create this repository. With `azd` you can create a new repository with a fully functional CI/CD pipeline in minutes. You can find more information about `azd` [here](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/).
+We've used the Azure Developer CLI Bicep Starter template to create this repository. With `azd` you can create a new repository with a fully functional CI/CD pipeline in minutes. You can find more information about `azd` [here](https://learn.microsoft.com/azure/developer/azure-developer-cli/).
 
 One of the key points of `azd` templates is that we can implement best practices together with our solution when it comes to security, network isolation, monitoring, etc. Users are free to define their own best practices for their dev teams & organization, so all deployments are followed by the same standards.
 
@@ -58,24 +58,24 @@ When it comes to security, there are recommendations mentioned for securing your
 
 ### Azure API Center
 
-[Azure API Center](https://learn.microsoft.com/en-us/azure/api-center/overview) is a service that provides a centralized inventory of all your organization's APIs. It allows you to organize and filter APIs and related resources using built-in and custom metadata properties, to help with API governance and discovery by API consumers.
+[Azure API Center](https://learn.microsoft.com/azure/api-center/overview) is a service that provides a centralized inventory of all your organization's APIs. It allows you to organize and filter APIs and related resources using built-in and custom metadata properties, to help with API governance and discovery by API consumers.
 
 ### Azure API Management
 
-[Azure API Management](https://azure.microsoft.com/en-us/services/api-management/) is a fully managed service that enables customers to publish, secure, transform, maintain, and monitor APIs. It is a great way to expose your APIs to the outside world in a secure and manageable way.
+[Azure API Management](https://azure.microsoft.com/services/api-management/) is a fully managed service that enables customers to publish, secure, transform, maintain, and monitor APIs. It is a great way to expose your APIs to the outside world in a secure and manageable way.
 
 ### Application Insights
 
-[Application Insights](https://azure.microsoft.com/en-us/services/monitor/) allows you to monitor your application. You can use this to monitor the performance of your application.
+[Application Insights](https://azure.microsoft.com/services/monitor/) allows you to monitor your application. You can use this to monitor the performance of your application.
 
 ### Log Analytics
 
-[Log Analytics](https://azure.microsoft.com/en-us/services/monitor/) allows you to collect and analyze telemetry data from your application. You can use this to monitor the performance of your application.
+[Log Analytics](https://azure.microsoft.com/services/monitor/) allows you to collect and analyze telemetry data from your application. You can use this to monitor the performance of your application.
 
 ### Azure Monitor
 
-[Azure Monitor](https://azure.microsoft.com/en-us/services/monitor/) allows you to monitor the performance of your application. You can use this to monitor the performance of your application.
+[Azure Monitor](https://azure.microsoft.com/services/monitor/) allows you to monitor the performance of your application. You can use this to monitor the performance of your application.
 
 ### Azure Key Vault
 
-[Azure Key Vault](https://azure.microsoft.com/en-us/services/key-vault/) allows you to store and manage your application's secrets. You can use this to store your application's secrets.
+[Azure Key Vault](https://azure.microsoft.com/services/key-vault/) allows you to store and manage your application's secrets. You can use this to store your application's secrets.
