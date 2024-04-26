@@ -11,15 +11,15 @@ if (!$azdenv.APIM_RESOURCE_ID) {
 else
 {
     Write-Host "API Management found, checking if APIs need to be imported..."
-    $api = az apic api list -g $azdenv.RESOURCE_GROUP_NAME -s $azdenv.APIC_SERVICE_NAME --output json | ConvertFrom-Json
-    $matchingApi = $api | Where-Object { $_.name -eq $azdenv.APIM_SAP_API_NAME }
-    if (!$matchingApi) {
-        Write-Host "API not found, importing..."
-        # AZ CLI METHOD to import all APIs from APIM
-        # $allApis = "$($azdenv.APIM_RESOURCE_ID)/apis/*"
-        # az apic service import-from-apim -g $azdenv.RESOURCE_GROUP_NAME -s $azdenv.APIC_SERVICE_NAME --source-resource-ids $allApis
-        # Write-Host "Importing APIs from Azure API Management completed"
+    # AZ CLI METHOD to import all APIs from APIM
+    # $allApis = "$($azdenv.APIM_RESOURCE_ID)/apis/*"
+    # az apic service import-from-apim -g $azdenv.RESOURCE_GROUP_NAME -s $azdenv.APIC_SERVICE_NAME --source-resource-ids $allApis
+    # Write-Host "Importing APIs from Azure API Management completed"
 
+    $apiDef = az apic api definition list -g $azdenv.RESOURCE_GROUP_NAME -s $azdenv.APIC_SERVICE_NAME --api-name $azdenv.APIM_SAP_API_NAME --version $azdenv.APIM_SAP_VERSION_NAME --output json | ConvertFrom-Json
+    $matchingApi = $apiDef | Where-Object { $_.value -eq null }
+    if (!$matchingApi) {
+        Write-Host "OpenAPI Specification not found, importing..."
         # SMAPI METHOD to import only the SAP API Sepc, as the rest is created via Bicep
         # Obtain an access token
         $accessToken = az account get-access-token --query accessToken -o tsv
