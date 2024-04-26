@@ -6,17 +6,16 @@ if ($? -eq $true) {
     $myPrincipal = az ad signed-in-user show --query "id" -o tsv
     azd env set MY_USER_ID $myPrincipal
     Write-Host "Done"
-    Write-Host "Updating APIC extension to the latest..."
+    Write-Host "Updating APIC extension..."
     $apicExtension= az extension list --query "[?name=='apic-extension'].name" -o tsv  
     if (!$apicExtension) {
-        Write-Host "APIC extension not found... skipping deletion"
+        Write-Host "APIC extension not found... Installing..."
+        az extension add -n apic-extension
     }
     else {
-        az extension remove --name apic-extension
+        Write-Host "APIC extension found... Updating..."
+        az extension update --name apic-extension
     }
-    #$pathExtension="./extensions/apic_extension-1.0.0b4-py3-none-any.whl"
-    #az extension add --source $pathExtension --yes
-    az extension add -n apic-extension
     Write-Host "Done"
 }
 
