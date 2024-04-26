@@ -1,8 +1,8 @@
-@sapApimTokenUrl = <url-to-get-token-from-sap-apim>
-@sapApimDiscoveryUrl = <url-to-discovery-endpoint>
-@sapApimResourceUrl = <url-to-resource-endpoint>
-@clientId = <client-id>
-@clientSecret = <client-secret>
+@sapApimTokenUrl = <https://<your-sap-btp-service-instance-name>.authentication.<btp-region>.hana.ondemand.com/oauth/token>
+@sapApimDiscoveryUrl = <https://<btp-region>devportal.cfapps.<btp-region>.hana.ondemand.com/apidiscovery/v1/apis>
+@sapApimResourceUrl = <https://<btp-region>devportal.cfapps.<btp-region>.hana.ondemand.com/odata/1.0/data.svc/APIMgmt.APIResourceDocumentations('yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyyy')/content/$value>
+@clientId = <client id from SAP BTP service key>
+@clientSecret = <client secret from SAP BTP service key>
 
 ### Get Token for consumer
 # @name consumerToken

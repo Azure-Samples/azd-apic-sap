@@ -12,7 +12,7 @@ products:
 - azure-monitor
 urlFragment: azd-apic-sap
 name: Discover your SAP & Azure API Management APIs in one place with Azure API Center
-description: Improve the discoverability and governance of all your APIs in one place, with Azure API Center. In this sample we expose SAP APIs directly and Azure API Management APIs connected to an SAP ODATA backend to API Center, deployed with Azure Developer CLI (azd)
+description: Improve the discoverability and governance of all your APIs in one place, with Azure API Center. In this sample we expose SAP APIs directly and Azure API Management APIs connected to an SAP OData backend to API Center, deployed with Azure Developer CLI (azd)
 ---
 <!-- YAML front-matter schema: https://review.learn.microsoft.com/en-us/help/contribute/samples/process/onboarding?branch=main#supported-metadata-fields-for-readmemd -->
 
@@ -27,11 +27,14 @@ Available as template on:
 
 # Discover your SAP & Azure API Management APIs in one place with Azure API Center
 
-Improve the discoverability and governance of all your APIs in one place, with Azure API Center. In this sample we expose SAP APIs directly and Azure API Management APIs connected to an SAP ODATA backend to API Center, deployed with Azure Developer CLI (`azd`).
+Improve the discoverability and governance of all your APIs in one place, with Azure API Center. In this sample we expose SAP APIs directly and Azure API Management APIs connected to an SAP OData backend to API Center, deployed with Azure Developer CLI (`azd`).
 
-This repository provides guidance and tools for organizations looking to implement Azure API Center to improve the discoverability and governance of all APIs in one place. The repository includes a Bicep template for provisioning and deploying the resources, and a sample API implementation that demonstrates how to expose SAP APIs directly and Azure API Management APIs connected to an SAP ODATA backend to API Center.
+This repository provides guidance and tools for organizations looking to implement Azure API Center to improve the discoverability and governance of all APIs in one place. The repository includes a Bicep template for provisioning and deploying the resources, and a sample API implementation that demonstrates how to expose SAP APIs directly and Azure API Management APIs connected to an SAP OData backend to API Center.
 
-## Key features
+> [!TIP]
+> Have a look at [this blog post](https://community.sap.com/t5/technology-blogs-by-members/govern-sap-apis-living-in-various-api-management-gateways-in-a-single-place/ba-p/13682483) for more details on the approach.
+
+## Key features ⚙️
 
 - **Infrastructure-as-code**: Bicep templates for provisioning and deploying the resources.
 - **API Inventory**: Register all of your organization's APIs for inclusion in a centralized inventory.
@@ -40,31 +43,39 @@ This repository provides guidance and tools for organizations looking to impleme
 - **SAP Integration**: Expose your SAP backend via Azure API Management or via SAP API Management to Azure API Center.
 - **End-to-end sample**: Including dashboards, sample APIs and Developer Portals.
 
-## Architecture
+## Architecture 🏛️
 
 ![azd-apic-sap](docs/images/arch.png)
 Read more: [Architecture in detail](#architecture-in-detail)
 
-## Assets
+## Assets 📦
 
 - Infrastructure-as-code (IaC) Bicep files under the `infra` folder that demonstrate how to provision resources and setup resource tagging for azd.
 - A [dev container](https://containers.dev) configuration file under the `.devcontainer` directory that installs infrastructure tooling by default. This can be readily used to create cloud-hosted developer environments such as [GitHub Codespaces](https://aka.ms/codespaces) or a local environment via a [VSCode DevContainer](https://code.visualstudio.com/docs/devcontainers/containers).
 - Continuous deployment workflows for CI providers such as GitHub Actions under the `.github` directory, and Azure Pipelines under the `.azdo` directory that work for most use-cases.
 
-## Getting started
+## Getting started 🛫
 
-### Prerequisites
+### Prerequisites (steps not that are not automated by AZD)
 
 - [Azure Developer CLI](https://docs.microsoft.com/en-us/azure/developer/azure-developer-cli/)
-- An SAP Environment. See below on how to setup your own SAP OData API.
+- An SAP Integration Suite instance with the [SAP API management capability](https://developers.sap.com/group.cp-apim-code-1.html) activated in your SAP BTP subaccount.
+- The [API Management, developer portal](https://help.sap.com/docs/integration-suite/sap-integration-suite/api-access-plan-for-api-business-hub-enterprise) service deployed in your SAP BTP subaccount.
+- At least one OpenAPI or OData API hosted on an SAP system available.
 
-### SAP OData API
+> [!TIP]
+> Consider the SAP BTP terraform provider to automate the provisioning of SAP BTP services for a fully integrated experience. Find more information [here](https://developers.sap.com/tutorials/btp-terraform-get-started.html).
 
-You can setup SAP OData API in minutes. You need to signup and then you can tryout the API [here](https://api.sap.com/api/API_BUSINESS_PARTNER/tryout). You'll find the API documentation [here](https://api.sap.com/api/API_BUSINESS_PARTNER/overview).
+### Preparing your SAP API
 
-If you used the SAP Sandbox environment as mentioned above, the SAP_ENDPOINT is [here](https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER). The SAP_APIKEY can be found in the SAP API Business Hub.
+Arguably the fastest way to interact with an SAP OData API is the SAP Business Accelerator hub. Once signed up you can tryout for instance Business Partner API [here](https://api.sap.com/api/API_BUSINESS_PARTNER/tryout). You'll find the API documentation [here](https://api.sap.com/api/API_BUSINESS_PARTNER/overview).
 
-OData API type just got into public preview. You can find more information about how you can add your own SAP OData APIs in Azure API Management [here](https://learn.microsoft.com/en-us/azure/api-management/sap-api?tabs=odata).
+> [!TIP]
+> The SAP Sandbox environment as mentioned above, the SAP_ENDPOINT is [here](https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER). The SAP_APIKEY can be found in the SAP API Business Hub.
+
+See [these additional options](https://github.com/Azure-Samples/app-service-javascript-sap-cloud-sdk-quickstart?tab=readme-ov-file#prerequisites--installation) for free and easy sandboxing with SAP APIs.
+
+Find more information about on adding OData APIs in Azure API Management [here](https://learn.microsoft.com/azure/api-management/sap-api?tabs=odata). For SAP API Management have a look [here](https://developers.sap.com/group.cp-apim-code-1.html).
 
 ### 1. Initialize a new `azd` environment
 
@@ -102,106 +113,48 @@ The conditional parameters set in the `azd up` command are stored in the .azure\
     "parameters": {
       "deployAzureAPIMtoAPIC": "<true or false>", // Deploy Azure API Management APIs to API Center
       "deploySapAPIMtoAPIC": "<true or false>", // Deploy SAP API Management APIs to API Center
-      "sapBackendEndpoint": "<the SAP OData endpoint for API Management>", // The SAP OData endpoint for Azure API Management
-      "sapBackendApiKey": "<the SAP OData api key for API Management>", // The SAP OData api key for API Azure Management
-      "sapApimTokenUrl": "<the SAP API Management token URL>", // The SAP API Management token URL
-      "sapApimDiscoveryUrl": "<the SAP API Management discovery URL>", // The SAP API Management discovery URL
-      "sapApimClientId": "<the SAP API Management client ID>", // The SAP API Management client ID
-      "sapApimSecret": "<the SAP API Management secret>" // The SAP API Management secret
+      // SAP API Management
+      "sapApimTokenUrl": "<https://<your-sap-btp-service-instance-name>.authentication.<btp-region>.hana.ondemand.com/oauth/token>", // url property from SAP BTP service key
+      "sapApimDiscoveryUrl": "<https://<btp-region>devportal.cfapps.<btp-region>.hana.ondemand.com/apidiscovery/v1/apis>", // The SAP API Management discovery URL
+      "sapApimClientId": "<client id from SAP BTP service key>", // SAP API Management, developer portal
+      "sapApimSecret": "<client secret from SAP BTP service key>", // SAP API Management, developer portal
+      // Azure API Management specific for included automatic onboarding of OData API into Azure APIM
+      "sapBackendEndpoint": "<SAP OData endpoint for Azure API Management>", // The SAP OData endpoint for Azure API Management
+      "sapBackendApiKey": "<API key for Azure API Management solution>" // The SAP OData api key for API Azure Management
     }
   }
 }
 ```
 
 > [!NOTE]  
-> When you only want to deploy the SAP API Management APIs to API Center, but not the Azure API Management APIs, you can set the `deployAzureAPIMtoAPIC` parameter to `false`. All input related to Azure API Management will be ignored. Same applies for the `deploySapAPIMtoAPIC` parameter for the SAP API Management APIs.
+> Deploy only SAP API Management APIs to Azure API Center skipping Azure API Management APIs, by setting the `deployAzureAPIMtoAPIC` parameter to `false`. All input related to Azure API Management will be ignored. Same applies for the `deploySapAPIMtoAPIC` parameter for the SAP API Management APIs.
 
-## Additional features
+## Testing 🧪
 
-### CI/CD pipeline
+- Use the test file [tests-sap-backend.http](tests-sap-backend.http) to check your Azure API Management deployment consuming from SAP Backend.
 
-This project includes a Github workflow and a Azure DevOps Pipeline for deploying the resources to Azure on every push to main. That workflow requires several Azure-related authentication secrets to be stored as Github action secrets. To set that up, run:
+- Testing the SAP API Management Discovery can be done using the file [sap-apim-scan.http](sap-apim-scan.http).
 
-```shell
-azd pipeline config
-```
-
-### Enable AZD support for ADE (Azure Development Environment)
-
-You can configure `azd` to provision and deploy resources to your deployment environments using standard commands such as `azd up` or `azd provision`. When `platform.type` is set to devcenter, all `azd` remote environment state and provisioning uses dev center components. `azd` uses one of the infrastructure templates defined in your dev center catalog for resource provisioning. In this configuration, the infra folder in your local templates isn’t used.
-
-```shell
- azd config set platform.type devcenter
-```
-
-### Monitoring
-
-The deployed resources include a Log Analytics workspace with an Application Insights based dashboard to measure metrics like server response time and failed requests. We also included some custom visuals in the dashboard to visualize the token usage per consumer of the Azure OpenAI service.
-
-![azd-apic-sap](docs/images/dashboard.png)
-
-To open that dashboard, run this command once you've deployed:
-
-```shell
-azd monitor --overview
-```
-
-### Clean up
-
-To clean up all the resources you've created and purge the soft-deletes, simply run:
-
-```shell
-azd down --force --purge
-```
-
-The resource group and all the resources will be deleted and you'll not be prompted if you want the soft-deletes to be purged.
-
-### Testing
-
-A [tests-sap-backend.http](tests-sap-backend.http) file with relevant tests you can perform is included, to check if your Azure API Management deployment is successful with the SAP Backend. I've added my test script for testing the SAP API Management Discovery as well in this file: [sap-apim-scan.http](sap-apim-scan.http). You can easily complete the parameters in the tests file, just check the environment variables in the `.env` file, or run the command below in the terminal. Keep in mind that secrets are not stored in the `.env` file, so you need to provide them manually.
+- Check the environment variables in the `.env` file, or run the command below in the terminal. Keep in mind that secrets are not stored in the `.env` file, so you need to provide them manually.
 
 ```shell
 azd env get-values
 ```
 
-### Build Status
+## What's next?
 
-After forking this repo, you can use this GitHub Action to enable CI/CD for your fork. Just adjust the README in your fork to point to your own GitHub repo.
+You can do a lot more once the app is deployed. Curious? We got you covered with some more information on the setup, monitoring, and DevOps [here](docs/ADDITIONAL_INFO.md).
 
-## Additional Details
+## Contributing 👩🏼‍🤝‍👨🏽
 
-The following section examines different concepts that help tie in application and infrastructure.
+This project welcomes contributions and suggestions. Please use [GitHub Issues](https://github.com/Azure-Samples/azd-apic-sap/issues/new/choose) to report errors or request new features.
 
-### Architecture in detail
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
+For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
+contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
-This repository illustrates how to deploy a solution that integrates SAP APIs and Azure API Management APIs into Azure API Center.
+## Trademarks™
 
-We've used the Azure Developer CLI Bicep Starter template to create this repository. With `azd` you can create a new repository with a fully functional CI/CD pipeline in minutes. You can find more information about `azd` [here](https://learn.microsoft.com/en-us/azure/developer/azure-developer-cli/).
-
-One of the key points of `azd` templates is that we can implement best practices together with our solution when it comes to security, network isolation, monitoring, etc. Users are free to define their own best practices for their dev teams & organization, so all deployments are followed by the same standards.
-
-When it comes to security, there are recommendations mentioned for securing your Azure API Management instance. For example, with the use of Front Door or Application Gateway (see [this](https://github.com/pascalvanderheiden/ais-sync-pattern-la-std-vnet) repository), proving Layer 7 protection and WAF capabilities, and by implementing OAuth authentication on the API Management instance. How to implement OAuth authentication on API Management (see [here](https://github.com/pascalvanderheiden/ais-apim-oauth-flow) repository).
-
-### Azure API Center
-
-[Azure API Center](https://learn.microsoft.com/en-us/azure/api-center/overview) is a service that provides a centralized inventory of all your organization's APIs. It allows you to organize and filter APIs and related resources using built-in and custom metadata properties, to help with API governance and discovery by API consumers.
-
-### Azure API Management
-
-[Azure API Management](https://azure.microsoft.com/en-us/services/api-management/) is a fully managed service that enables customers to publish, secure, transform, maintain, and monitor APIs. It is a great way to expose your APIs to the outside world in a secure and manageable way.
-
-### Application Insights
-
-[Application Insights](https://azure.microsoft.com/en-us/services/monitor/) allows you to monitor your application. You can use this to monitor the performance of your application.
-
-### Log Analytics
-
-[Log Analytics](https://azure.microsoft.com/en-us/services/monitor/) allows you to collect and analyze telemetry data from your application. You can use this to monitor the performance of your application.
-
-### Azure Monitor
-
-[Azure Monitor](https://azure.microsoft.com/en-us/services/monitor/) allows you to monitor the performance of your application. You can use this to monitor the performance of your application.
-
-### Azure Key Vault
-
-[Azure Key Vault](https://azure.microsoft.com/en-us/services/key-vault/) allows you to store and manage your application's secrets. You can use this to store your application's secrets.
+This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft trademarks or logos is subject to and must follow [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/legal/intellectualproperty/trademarks/usage/general).
+Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
+Any use of third-party trademarks or logos are subject to those third-party's policies.
