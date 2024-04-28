@@ -62,20 +62,20 @@ When it comes to security, there are recommendations mentioned for securing your
 
 ### Azure API Management
 
-[Azure API Management](https://azure.microsoft.com/services/api-management/) is a fully managed service that enables customers to publish, secure, transform, maintain, and monitor APIs. It is a great way to expose your APIs to the outside world in a secure and manageable way.
+[Azure API Management](https://learn.microsoft.com/en-us/azure/api-management/api-management-key-concepts) is a fully managed service that enables customers to publish, secure, transform, maintain, and monitor APIs. It is a great way to expose your APIs to the outside world in a secure and manageable way.
 
 ### Application Insights
 
-[Application Insights](https://azure.microsoft.com/services/monitor/) allows you to monitor your application. You can use this to monitor the performance of your application.
+[Application Insights](https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview) allows you to monitor your application. You can use this to monitor the performance of your application.
 
 ### Log Analytics
 
-[Log Analytics](https://azure.microsoft.com/services/monitor/) allows you to collect and analyze telemetry data from your application. You can use this to monitor the performance of your application.
+[Log Analytics](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-tutorial) allows you to collect and analyze telemetry data from your application. You can use this to monitor the performance of your application.
 
 ### Azure Monitor
 
-[Azure Monitor](https://azure.microsoft.com/services/monitor/) allows you to monitor the performance of your application. You can use this to monitor the performance of your application.
+[Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/overview) allows you to monitor the performance of your application. You can use this to monitor the performance of your application.
 
 ### Azure Key Vault
 
-[Azure Key Vault](https://azure.microsoft.com/services/key-vault/) allows you to store and manage your application's secrets. You can use this to store your application's secrets.
+[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/overview) allows you to store and manage your application's secrets. You can use this to store your application's secrets.

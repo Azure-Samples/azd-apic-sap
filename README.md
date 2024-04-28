@@ -66,12 +66,9 @@ Read more: [Architecture in detail](#architecture-in-detail)
 > [!TIP]
 > Consider the SAP BTP terraform provider to automate the provisioning of SAP BTP services for a fully integrated experience. Find more information [here](https://developers.sap.com/tutorials/btp-terraform-get-started.html).
 
-### Preparing your SAP API
+### Preparing your SAP APIs in Azure API Management 
 
 Arguably the fastest way to interact with an SAP OData API is the SAP Business Accelerator hub. Once signed up you can tryout for instance Business Partner API [here](https://api.sap.com/api/API_BUSINESS_PARTNER/tryout). You'll find the API documentation [here](https://api.sap.com/api/API_BUSINESS_PARTNER/overview).
-
-> [!TIP]
-> The SAP Sandbox environment as mentioned above, the SAP_ENDPOINT is [here](https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER). The SAP_APIKEY can be found in the SAP API Business Hub.
 
 See [these additional options](https://github.com/Azure-Samples/app-service-javascript-sap-cloud-sdk-quickstart?tab=readme-ov-file#prerequisites--installation) for free and easy sandboxing with SAP APIs.
 
