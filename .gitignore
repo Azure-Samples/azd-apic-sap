@@ -410,3 +410,6 @@ FodyWeavers.xsd
 
 # Local test files
 local.*
+
+# Locally added OpenAPI specs from SAP APIM
+infra/core/apic/openapi/sap/*

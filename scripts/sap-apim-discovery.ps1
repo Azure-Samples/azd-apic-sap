@@ -42,14 +42,14 @@ $discoveryResponse.value | ForEach-Object {
     $url = $_.apiDefinitions[0].url
     $runtimeUri = $_.entryPoints[0].url
     $apiName = ($name -replace "_", "").ToLower()
-    $releaseStatus = $_.releaseStatus
+    # $releaseStatus = $_.releaseStatus
     $summary = $_.summary
     $description = $_.description
     Write-Host "API Discovered: $name - $url"
     Write-Host "Retrieving API definition, saving as file"
     $resourceResponse = Invoke-RestMethod -Uri $_.apiDefinitions[0].url -Headers $headers -Method Get -ContentType "application/json"
     $jsonString = $resourceResponse | ConvertTo-Json -Depth 50
-    $newJsonFilePath = "infra\core\apic\openapi\$name.json"
+    $newJsonFilePath = "infra\core\apic\openapi\sap\$name.json"
     $jsonString | Out-File -FilePath $newJsonFilePath -Force
     # Output the file path for confirmation
     Write-Output "OpenAPI Spec saved to: $newJsonFilePath"

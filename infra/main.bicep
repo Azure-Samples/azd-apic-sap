@@ -110,11 +110,11 @@ var resourceToken = toLower(uniqueString(subscription().id, environmentName, loc
 var sapApiKeySecretName = 'sap-api-key'
 var sapClientIdSecretName = 'sap-apim-client-id'
 var sapSecretSecretName = 'sap-apim-secret'
-var sapAppMetadataSchema = loadTextContent('./core/apic/metadata/sap-app-metadata-schema.json')
+// var sapAppMetadataSchema = loadTextContent('./core/apic/metadata/sap-app-metadata-schema.json')
 var rootUrl = !empty(sapApimDiscoveryUrl) ? split(sapApimDiscoveryUrl, '/apidiscovery')[0] : ''
 var sapManagementPortalUrl = !empty(rootUrl) ? '${rootUrl}/shell/homepage' : ''
 var sapDeveloperPortalUrl = !empty(rootUrl) ? '${rootUrl}/shell/configure' : ''
-var apimOpenAPISpecFileLocation = 'infra/core/apic/openapi/API_BUSINESS_PARTNER.json'
+var apimOpenAPISpecFileLocation = 'infra/core/apic/openapi/azure/API_BUSINESS_PARTNER.json'
 // Organize resources in a resource group
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: !empty(resourceGroupName) ? resourceGroupName : '${abbrs.resourcesResourceGroups}${environmentName}'
